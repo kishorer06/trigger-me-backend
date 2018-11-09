@@ -5,9 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.trigger-me</groupId>
-	<artifactId>trigger-me</artifactId>
+	<artifactId>trigger-me-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<name>trigger-me-server</name>
 	<description>Trigger me project for Spring Boot</description>
