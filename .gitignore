@@ -4,8 +4,19 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
-# Other files and folders
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
 .settings/
+target/
+*.sublime-workspace
+
+# System Files
+.DS_Store
+Thumbs.db
 
 # Executables
 *.swf
