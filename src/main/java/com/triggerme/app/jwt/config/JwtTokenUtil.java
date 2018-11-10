@@ -42,7 +42,7 @@ public class JwtTokenUtil implements Serializable {
 	}
 
 	private Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(JwtConstants.SIGNING_KEY).parseClaimsJws(token).getBody();
+		return Jwts.parser().setSigningKey(appConfUtil.getProperty(JwtConstants.SIGNING_KEY)).parseClaimsJws(token).getBody();
 	}
 
 	private Boolean isTokenExpired(String token) {
@@ -63,7 +63,7 @@ public class JwtTokenUtil implements Serializable {
 				.setId(id)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JwtConstants.ACCESS_TOKEN_VALIDITY_SECONDS * 1000))
-				.signWith(SignatureAlgorithm.HS256, JwtConstants.SIGNING_KEY).compact();
+				.signWith(SignatureAlgorithm.HS256, appConfUtil.getProperty(JwtConstants.SIGNING_KEY)).compact();
 	}
 
 	public Boolean validateToken(String token, UserDetails userDetails) {
