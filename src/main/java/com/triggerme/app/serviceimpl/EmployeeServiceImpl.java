@@ -13,7 +13,7 @@ import com.triggerme.app.model.Employee;
 import com.triggerme.app.service.EmployeeService;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
 	public static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
@@ -26,18 +26,29 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public Employee saveEmployee(Employee empl) {
-		return emplRepository.insert(empl);
+	public Employee saveEmployee(Employee emp) {
+		return emplRepository.insert(emp);
 	}
 
 	@Override
-	public Employee updateEmployee(Employee empl) {
-		return emplRepository.save(empl);
+	public Employee updateEmployee(Employee emp) {
+		return emplRepository.save(emp);
 	}
 
 	@Override
 	public List<Employee> getEmployees() {
 		return emplRepository.findAll();
+	}
+
+	@Override
+	public boolean deleteEmployeeById(String empId) {
+		try {
+			emplRepository.deleteById(empId);;
+		} catch (Exception e) {
+			logger.error("deleteEmployee: Failed!", e);
+			return false;
+		}
+		return true;
 	}
 
 }

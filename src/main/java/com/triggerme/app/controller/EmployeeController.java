@@ -32,25 +32,32 @@ public class EmployeeController {
 	EmployeeService emplService;
 
 	@RequestMapping(value = "/getEmployeeById", method = RequestMethod.GET)
-	public Optional<Employee> getUser(@RequestParam String emplId) {
-		System.out.println(emplId);
-		return emplService.findEmployeeById(emplId);
+	public Optional<Employee> getUser(@RequestParam String empId) {
+		return emplService.findEmployeeById(empId);
 	}
 
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee empl) {
-		System.out.println(empl.toString());
-		return new ResponseEntity<Employee>(emplService.saveEmployee(empl), HttpStatus.CREATED);
+	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee emp) {
+		return new ResponseEntity<Employee>(emplService.saveEmployee(emp), HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/getEmployees", method = RequestMethod.GET)
 	public List<Employee> getEmployees() {
 		return emplService.getEmployees();
 	}
-	
-	@RequestMapping(value = "/updateEmployee", method = RequestMethod.PUT)
-	public Employee updateEmployee(@RequestBody Employee empl) {
-		return emplService.updateEmployee(empl);
+
+	@RequestMapping(value = "/updateEmployee", method = RequestMethod.PATCH)
+	public Employee updateEmployee(@RequestBody Employee emp) {
+		return emplService.updateEmployee(emp);
+	}
+
+	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteEmployee(@RequestParam("empId") String empId) {
+		boolean result = emplService.deleteEmployeeById(empId);
+		if (result)
+			return new ResponseEntity<String>(HttpStatus.OK);
+		else
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 
 }

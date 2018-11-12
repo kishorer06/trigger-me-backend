@@ -10,9 +10,11 @@ public interface EmployeeService {
 
 	Optional<Employee> findEmployeeById(String empId);
 
-	Employee saveEmployee(Employee empl);
+	Employee saveEmployee(Employee emp);
 
-	Employee updateEmployee(Employee empl);
+	Employee updateEmployee(Employee emp);
 	
 	List<Employee> getEmployees();
+
+	boolean deleteEmployeeById(String empId);
 }
