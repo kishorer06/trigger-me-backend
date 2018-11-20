@@ -17,12 +17,9 @@ import com.triggerme.app.errorhandling.CustomErrorType;
 import com.triggerme.app.model.User;
 import com.triggerme.app.service.UserService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @CrossOrigin
 @RestController
 @RequestMapping("tm")
-@Slf4j
 public class UserController {
 
 	public static final Logger logger = LoggerFactory.getLogger(UserController.class);

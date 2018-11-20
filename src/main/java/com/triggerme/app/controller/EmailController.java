@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.triggerme.app.service.EmailService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @CrossOrigin
 @RestController
 @RequestMapping("tm")
-@Slf4j
 public class EmailController {
 
 	public static final Logger logger = LoggerFactory.getLogger(EmailController.class);

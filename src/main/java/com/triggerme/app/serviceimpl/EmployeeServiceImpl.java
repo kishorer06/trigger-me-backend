@@ -41,14 +41,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean deleteEmployeeById(String empId) {
-		try {
+	public void deleteEmployeeById(String empId) {
 			emplRepository.deleteById(empId);;
-		} catch (Exception e) {
-			logger.error("deleteEmployee: Failed!", e);
-			return false;
-		}
-		return true;
 	}
 
 }

@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.triggerme.app.model.Employee;
+import com.triggerme.app.model.ResponseMessage;
 import com.triggerme.app.service.EmployeeService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin
 @RestController
 @RequestMapping("tm")
-@Slf4j
 public class EmployeeController {
 
 	public static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -52,12 +50,18 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteEmployee(@RequestParam("empId") String empId) {
-		boolean result = emplService.deleteEmployeeById(empId);
-		if (result)
-			return new ResponseEntity<String>(HttpStatus.OK);
-		else
-			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<ResponseMessage> deleteEmployee(@RequestParam("empId") String empId) {
+		ResponseEntity<ResponseMessage> response =  null;
+
+		try {
+			emplService.deleteEmployeeById(empId);	
+			response = new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
+		} catch(Exception e) {
+			logger.error("deleteEmployee: Failed!", e);
+			response = new  ResponseEntity<ResponseMessage>(new ResponseMessage("Error"), HttpStatus.NOT_FOUND);
+
+		}
+		return response;
 	}
 
 }
