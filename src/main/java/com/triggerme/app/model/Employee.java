@@ -1,6 +1,6 @@
 package com.triggerme.app.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.annotation.Id;
@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -32,23 +33,29 @@ public class Employee {
 	
 	private String status;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Date statusStartDate;
+	private LocalDate statusStartDate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Date statusEndDate;
+	private LocalDate statusEndDate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Date projectStartDate;
+	private LocalDate projectStartDate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Date projectEndDate;
+	private LocalDate projectEndDate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Date empStartDate;
+	private LocalDate empStartDate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Date empEndDate;
+	private LocalDate empEndDate;
 	
 	private boolean isEmpEVerifyStatus;
 
@@ -100,51 +107,51 @@ public class Employee {
 		this.status = status;
 	}
 
-	public Date getStatusStartDate() {
+	public LocalDate getStatusStartDate() {
 		return statusStartDate;
 	}
 
-	public void setStatusStartDate(Date statusStartDate) {
+	public void setStatusStartDate(LocalDate statusStartDate) {
 		this.statusStartDate = statusStartDate;
 	}
 
-	public Date getStatusEndDate() {
+	public LocalDate getStatusEndDate() {
 		return statusEndDate;
 	}
 
-	public void setStatusEndDate(Date statusEndDate) {
+	public void setStatusEndDate(LocalDate statusEndDate) {
 		this.statusEndDate = statusEndDate;
 	}
 
-	public Date getProjectStartDate() {
+	public LocalDate getProjectStartDate() {
 		return projectStartDate;
 	}
 
-	public void setProjectStartDate(Date projectStartDate) {
+	public void setProjectStartDate(LocalDate projectStartDate) {
 		this.projectStartDate = projectStartDate;
 	}
 
-	public Date getProjectEndDate() {
+	public LocalDate getProjectEndDate() {
 		return projectEndDate;
 	}
 
-	public void setProjectEndDate(Date projectEndDate) {
+	public void setProjectEndDate(LocalDate projectEndDate) {
 		this.projectEndDate = projectEndDate;
 	}
 
-	public Date getEmpStartDate() {
+	public LocalDate getEmpStartDate() {
 		return empStartDate;
 	}
 
-	public void setEmpStartDate(Date empStartDate) {
+	public void setEmpStartDate(LocalDate empStartDate) {
 		this.empStartDate = empStartDate;
 	}
 
-	public Date getEmpEndDate() {
+	public LocalDate getEmpEndDate() {
 		return empEndDate;
 	}
 
-	public void setEmpEndDate(Date empEndDate) {
+	public void setEmpEndDate(LocalDate empEndDate) {
 		this.empEndDate = empEndDate;
 	}
 
