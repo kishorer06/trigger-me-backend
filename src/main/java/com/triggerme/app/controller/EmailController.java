@@ -25,7 +25,7 @@ public class EmailController {
 	
 	@RequestMapping(value = "/sendEmailNotification", method = RequestMethod.POST)
 	public ResponseEntity<String> getValidEmailStatus(@RequestParam String email, @RequestParam String text, @RequestParam String subject) {
-		String isValid =  empService.postEMailNotification(email, text, subject);
+		String isValid =  empService.postEMailNotification(email, text, 1, subject);
 			return new ResponseEntity<String>(isValid, HttpStatus.OK);
 	}
 }

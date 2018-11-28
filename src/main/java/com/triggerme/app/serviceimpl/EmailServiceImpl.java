@@ -24,7 +24,7 @@ public class EmailServiceImpl implements EmailService {
 	private JavaMailSender sender;
 
 	@Override
-	public String postEMailNotification(String email, String text, String subject) {
+	public String postEMailNotification(String email, String text, Integer priority, String subject) {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -32,6 +32,7 @@ public class EmailServiceImpl implements EmailService {
 			helper.setTo(email);
 			helper.setText(text);
 			helper.setSubject(subject);
+			helper.setPriority(priority);
 			sender.send(message);
 		} catch (MessagingException me) {
 			logger.error("postEMailNotification:  failed!", me);

@@ -17,4 +17,8 @@ public interface EmployeeService {
 	List<Employee> getEmployees();
 
 	void deleteEmployeeById(String empId);
+	
+	String sendEmpInactiveStatusNotfication();
+	
+	List<Employee> getInactiveEmployees();
 }

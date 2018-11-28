@@ -11,6 +11,6 @@ public interface EmailService {
 	 * @return success or faliure
 	 * @throws SendFailedException
 	 */
-	String postEMailNotification(String email, String text, String subject);
+	String postEMailNotification(String email, String text, Integer priority, String subject);
 
 }

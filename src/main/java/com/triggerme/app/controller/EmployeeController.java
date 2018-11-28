@@ -51,17 +51,36 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.DELETE)
 	public ResponseEntity<ResponseMessage> deleteEmployee(@RequestParam("empId") String empId) {
-		ResponseEntity<ResponseMessage> response =  null;
+		ResponseEntity<ResponseMessage> response = null;
 
 		try {
-			emplService.deleteEmployeeById(empId);	
+			emplService.deleteEmployeeById(empId);
 			response = new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.error("deleteEmployee: Failed!", e);
-			response = new  ResponseEntity<ResponseMessage>(new ResponseMessage("Error"), HttpStatus.NOT_FOUND);
+			response = new ResponseEntity<ResponseMessage>(new ResponseMessage("Error"), HttpStatus.NOT_FOUND);
 
 		}
 		return response;
 	}
+	
+	@RequestMapping(value = "/getInactiveEmployees", method = RequestMethod.GET)
+	public List<Employee> getInactiveEmployees() {
+			return emplService.getInactiveEmployees();
+	}
 
+	@RequestMapping(value = "/sendEmpInactiveRecordsNotification", method = RequestMethod.POST)
+	public ResponseEntity<ResponseMessage> sendEmpInactiveRecordsNotification() {
+		ResponseEntity<ResponseMessage> response = null;
+		String result = "";
+		try {
+			result = emplService.sendEmpInactiveStatusNotfication();
+			response = new ResponseEntity<ResponseMessage>(new ResponseMessage("message: " + result), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("sendEmpInactiveRecordsNotification: Failed!", e);
+			response = new ResponseEntity<ResponseMessage>(new ResponseMessage("message: " + result),
+					HttpStatus.NOT_FOUND);
+		}
+		return response;
+	}
 }
